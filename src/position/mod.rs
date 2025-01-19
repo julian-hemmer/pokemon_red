@@ -4,7 +4,7 @@ pub struct Position {
 }
 
 impl Position {
-    pub fn set_position(&mut self, new_x: f32, new_y: f32) {
+    pub fn set(&mut self, new_x: f32, new_y: f32) {
         self.x = new_x;
         self.y = new_y;
     }

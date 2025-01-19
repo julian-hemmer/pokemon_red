@@ -6,7 +6,7 @@ pub struct RustmonCamera {
     position: Position
 }
 
-pub fn create_camera() -> RustmonCamera {
+pub fn create() -> RustmonCamera {
     RustmonCamera { 
         position: Position {
             x: 0.0, y: 0.0
@@ -36,7 +36,7 @@ impl RustmonCamera {
     }
     
     pub fn set_position(&mut self, new_x: f32, new_y: f32) {
-        self.position.set_position(new_x, new_y);
+        self.position.set(new_x, new_y);
     }
 
     pub fn get_x(&self) -> f32 {

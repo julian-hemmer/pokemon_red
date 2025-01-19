@@ -1,12 +1,16 @@
 use macroquad::prelude::*;
 
+mod delta;
 mod camera;
 mod position;
 
 #[macroquad::main("RustmonRed")]
 async fn main() {
-    let mut camera =  camera::create_camera();
+    let mut camera =  camera::create();
+    let mut delta = delta::create();
+
     loop {
+        delta.update();
         clear_background(BLACK);
 
         camera.draw_line_at(0.0, 0.0, 
