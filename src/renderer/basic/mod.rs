@@ -1,5 +1,6 @@
 use macroquad::color;
 use macroquad::time;
+use macroquad::prelude::*;
 
 use crate::renderer::*;
 
@@ -13,9 +14,12 @@ pub fn create() -> BasicRenderer {
 }
 
 impl Renderer for BasicRenderer {
-    fn render(&self, camera: &mut RustmonCamera, _: &mut Delta) {
+    fn render(&self, camera: &mut RustmonCamera, delta: &mut Delta) {
+        clear_background(BLACK);
+
         camera.draw_line_at(20.0, 20.0,
             50.0, 50.0, 10.0, color::RED);
-        println!("FPS: {}", time::get_fps());
-    }
+
+            println!("FPS: {} | Delta: {}", time::get_fps(), delta.get());
+        }
 }
