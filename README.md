@@ -1,13 +1,13 @@
-# Rustmon Red
+# Pokemon Red
 
 ## Description
 
-Rustmon Red, is a project, i'm currently working on to learn rust by making a game engine that will hopefully run a Pokemon red like game.
+Pokemon Red, is a project, i'm currently working on to learn C by making a game engine that will hopefully run a Pokemon red like game.
 
 
 ## Project Usage
 
-This project will be used to learn how rust work.
+This project will be used to learn how C and CSFML work.
 
 ## TODO
 
