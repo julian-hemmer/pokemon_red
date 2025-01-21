@@ -1,2 +1,13 @@
-target/
-debug/
+PokemonRed
+
+*.gcno
+*.gcda
+
+*#*#
+*~
+
+*.a
+*.o
+
+build/
+.vscode/
