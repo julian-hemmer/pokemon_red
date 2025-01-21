@@ -5,11 +5,22 @@
 ## Binary Makefile
 ##
 
-SRC	= src/main.c
+SRC	= src/main.c	\
+	\
+	src/logger/logger.c	\
+	src/logger/type/info.c	\
+	\
+	src/game_loader.c	\
+	\
+	src/util/file_util.c
 
 CFLAGS	= -Wall -Wextra -I./include/ -g
 
 OBJ	= $(SRC:src/%.c=build/obj/%.o)
+
+LIBS	=	-lcsfml-window -lcsfml-graphics -lcsfml-system
+
+INCLUDE	=	-iquote./include
 
 NAME	= PokemonRed
 
@@ -28,7 +39,7 @@ $(NAME): $(OBJ)
 	@mkdir -p build/out/
 	@echo
 	@echo "\e[32mCompiling \e[31m.o \e[32mto executable binary:\e[90m"
-	gcc -o build/out/$(NAME) $(OBJ) -I./include -L./lib/
+	gcc -o build/out/$(NAME) $(OBJ) $(INCLUDE) $(LIBS)
 	@echo "\033[A\e[0m"
 	@cp build/out/$(NAME) .
 
@@ -42,3 +53,11 @@ fclean:
 
 	@echo "\e[92mRemove following file: [\e[90m$(NAME), *.gcda, *.gcdo\e[92m]"
 	@rm -f $(NAME) *.gcda *.gcdo
+
+run: re
+	@echo "\e[32mStarting \e[31m$(NAME)\e[32m.\e[0m"
+	@./PokemonRed
+
+vrun: re
+	@echo "\e[32mStarting \e[31m$(NAME)\e[32m with \e[31mvalgrind\e[32m.\e[0m"
+	@valgrind ./PokemonRed

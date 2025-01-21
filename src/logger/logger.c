@@ -1,0 +1,44 @@
+/*
+** EPITECH PROJECT, 2025
+** pokemon_red
+** File description:
+** logger
+*/
+
+#include "logger.h"
+#include "file_util.h"
+
+#include <stdlib.h>
+
+static FILE *load_file(const char *file_path)
+{
+    FILE *file;
+
+    if (file_path == NULL)
+        return NULL;
+    create_file_with_path(file_path);
+    file = fopen(file_path, "w");
+    if (file == NULL)
+        fprintf(stderr, "Unable to open file %s for logger.\n", file_path);
+    return file;
+}
+
+logger_t *init_logger(const char *file)
+{
+    logger_t *config = malloc(sizeof(logger_t));
+
+    if (config == NULL) {
+        fprintf(stderr, "Unable to load logger.\n");
+    }
+    config->enabled = true;
+    config->console_out = true;
+    config->file = load_file(file);
+    return config;
+}
+
+void destroy_logger(logger_t *logger_config)
+{
+    if (logger_config->file != NULL)
+        fclose(logger_config->file);
+    free(logger_config);
+}
