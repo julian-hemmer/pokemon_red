@@ -8,6 +8,6 @@
 #ifndef STRING_UTIL_H
     #define STRING_UTIL_H
 
-char *last_index_of(char const *str, char c);
+int last_index_of(const char *str, char c);
 
 #endif /* !STRING_UTIL_H */

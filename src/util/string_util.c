@@ -9,14 +9,14 @@
 
 #include <stdio.h>
 
-char *last_index_of(char const *str, char c)
+int last_index_of(const char *str, char c)
 {
-    char *found = NULL;
+    int found = -1;
 
     for (int i = 0; str[i]; i++) {
         if (str[i] != c)
             continue;
-        found = str + i;
+        found = i;
     }
     return found;
 }
