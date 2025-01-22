@@ -44,9 +44,9 @@ void log_info(const logger_t *config, const char *message, ...)
         return;
     }
     if (config->console_out)
-        printf(final_message);
+        printf("%s", final_message);
     if (config->file != NULL)
-        fprintf(config->file, final_message);
+        fprintf(config->file, "%s", final_message);
     va_end(list);
     free(final_message);
 }
