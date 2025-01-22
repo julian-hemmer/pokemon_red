@@ -9,6 +9,8 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+#include <time.h>
+
 #include "logger.h"
 #include "asprintf.h"
 
@@ -16,8 +18,11 @@ static char *format_message(const char *message, va_list list)
 {
     char *formatted = 0;
     char *final_message = 0;
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
 
-    my_asprintf(&formatted, "[INFO] - %s\n", message);
+    my_asprintf(&formatted, "[%02.2i:%02.2i:%02.2i] - [INFO]"
+        " - %s\n", tm.tm_hour, tm.tm_min, tm.tm_sec, message);
     if (formatted == 0)
         return 0;
     my_asvprintf(&final_message, formatted, list);
