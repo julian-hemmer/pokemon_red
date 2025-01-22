@@ -17,7 +17,7 @@ static FILE *load_file(const char *file_path)
     if (file_path == NULL)
         return NULL;
     create_file_with_path(file_path);
-    file = fopen(file_path, "w");
+    file = fopen(file_path, "a");
     if (file == NULL)
         fprintf(stderr, "Unable to open file %s for logger.\n", file_path);
     return file;

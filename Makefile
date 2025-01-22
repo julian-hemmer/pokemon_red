@@ -11,6 +11,10 @@ SRC	= src/main.c	\
 	src/logger/type/info.c	\
 	\
 	src/game_loader.c	\
+	src/game_destroyer.c	\
+	\
+	src/printf/my_asprintf.c	\
+	src/printf/my_asvprintf.c	\
 	\
 	src/util/file_util.c	\
 	src/util/string_util.c

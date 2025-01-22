@@ -19,7 +19,8 @@ int create_dir(const char *path)
     char dir[256];
     int last_index = last_index_of(path, '/');
 
-    strncpy(dir, path, last_index == -1 ? sizeof(dir) : last_index + 1);
+    strncpy(dir, path, last_index == -1 ? sizeof(dir) : (size_t)last_index);
+    dir[last_index] = 0;
     if (mkdir(dir, 0755) != 0 && errno != EEXIST)
         return -1;
     return 0;
@@ -27,7 +28,6 @@ int create_dir(const char *path)
 
 int create_file_with_path(const char *path)
 {
-    char *filename = strrchr(path, '/');
     FILE *file = NULL;
 
     if (create_dir(path) == 0) {

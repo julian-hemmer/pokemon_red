@@ -12,14 +12,14 @@
 
 int main(int, const char **)
 {
-    logger_t *logger = init_logger("./log/b.log");
     game_info_t game_info = { 0 };
 
-    log_info(logger, "Test!\n");
     if (load_game(&game_info) != 0) {
         fprintf(stderr, "An error occur while loading the game !\n");
+        destoy_game(&game_info);
         return 84;
     }
-    destroy_logger(logger);
+    log_info(game_info.logger, "Papa et mes %i chips !", 5);
+    destoy_game(&game_info);
     return 0;
 }
