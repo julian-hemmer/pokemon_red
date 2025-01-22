@@ -18,7 +18,7 @@ void log_info(const logger_t *config, const char *message, ...)
         return;
     va_start(list, message);
     if (config->console_out)
-        vfprintf(stdout, message, list);
+        vprintf(message, list);
     if (config->file != NULL)
         vfprintf(config->file, message, list);
     va_end(list);

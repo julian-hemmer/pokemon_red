@@ -12,26 +12,18 @@
 #include <sys/stat.h>
 
 #include "file_util.h"
+#include "string_util.h"
 
 int create_dir(const char *path)
 {
-    char temp[256];
-    char *dir = NULL;
+    char dir[256];
+    char *last_index = last_index_of(path, "/");
     size_t len;
 
-    strncpy(temp, path, sizeof(temp));
-    if (temp[strlen(temp) - 1] == '/')
-        temp[strlen(temp) - 1] = '\0';
-    len = strlen(temp);
-    for (size_t i = 1; i < len; i++) {
-        if (temp[i] != '/')
-            continue;
-        temp[i] = '\0';
-        dir = temp;
-        if (mkdir(dir, 0755) != 0 && errno != EEXIST)
-            return -1;
-        temp[i] = '/';
-    }
+    strncpy(dir, path, last_index == NULL ? sizeof(dir) : (dir - path));
+    printf("dir path: %s\n", path);
+    if (mkdir(dir, 0755) != 0 && errno != EEXIST)
+        return -1;
     return 0;
 }
 

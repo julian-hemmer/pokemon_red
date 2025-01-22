@@ -1,0 +1,11 @@
+#!/bin/bash
+
+binary_path="./"
+binary_name="PokemonRed"
+execution_path="$binary_path$binary_name"
+
+make re 
+formatted_args=$(printf "\"%s\", " "$@")
+formatted_args="${formatted_args%, }"
+printf "\e[32mStarting \e[31m$binary_name\e[32m with the following argument [\e[31m$formatted_args\e[32m] with \e[31mvalgrind\e[32m.\e[0m\n"
+valgrind "$execution_path" "$@"

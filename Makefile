@@ -12,17 +12,20 @@ SRC	= src/main.c	\
 	\
 	src/game_loader.c	\
 	\
-	src/util/file_util.c
+	src/util/file_util.c	\
+	src/util/string_util.c
 
-CFLAGS	= -Wall -Wextra -I./include/ -g
+INCLUDE	=	-iquote./include -iquote./include/util
 
-OBJ	= $(SRC:src/%.c=build/obj/%.o)
+WARNING	=	-Wall -Wextra
+
+CFLAGS	= 	$(WARNING) $(INCLUDE) -g
+
+OBJ		= 	$(SRC:src/%.c=build/obj/%.o)
 
 LIBS	=	-lcsfml-window -lcsfml-graphics -lcsfml-system
 
-INCLUDE	=	-iquote./include
-
-NAME	= PokemonRed
+NAME	= 	PokemonRed
 
 build/obj/%.o : src/%.c
 	@mkdir -p $@
