@@ -19,7 +19,6 @@ int main(int, const char **)
         destoy_game(&game_info);
         return 84;
     }
-    log_info(game_info.logger, "Papa et mes %i chips !", 5);
     destoy_game(&game_info);
     return 0;
 }
