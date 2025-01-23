@@ -15,7 +15,8 @@ void process_event(
 
     while (handler != NULL) {
         if ((data->type != handler->target_event) ||
-            (data->is_canceled && handler->ignore_canceled)) {
+            (data->is_canceled && handler->ignore_canceled) ||
+            (game_info->scene != handler->target_scene)) {
             handler = handler->next_handler;
             continue;
         }
