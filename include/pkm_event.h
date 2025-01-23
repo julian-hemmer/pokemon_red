@@ -93,6 +93,10 @@ void process_event(
     game_info_t *game_info,
     event_data_t *data);
 
+void process_csfml_event(
+    game_info_t *game_info,
+    sfEvent event);
+
 void dump_event_handler(game_info_t *game_info);
 
 int event_priority_ascending(void *o1, void *o2);

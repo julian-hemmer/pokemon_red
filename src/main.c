@@ -20,6 +20,7 @@ int main(int, const char **)
         destoy_game(&game_info);
         return 84;
     }
+    launch_game(&game_info);
     destoy_game(&game_info);
     return 0;
 }

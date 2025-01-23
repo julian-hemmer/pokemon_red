@@ -6,6 +6,14 @@
 */
 
 #include "pkm_event.h"
+#include <SFML/Graphics.h>
+
+void process_csfml_event(
+    game_info_t *game_info,
+    sfEvent event)
+{
+
+}
 
 void process_event(
     game_info_t *game_info,

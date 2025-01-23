@@ -40,10 +40,19 @@ static int load_logger(game_info_t *game_info)
     return game_info->logger == NULL ? 84 : 0;
 }
 
+static int load_clock(sfClock **clock)
+{
+    (*clock) = sfClock_create();
+    if ((*clock) == NULL)
+        return 84;
+    return 0;
+}
+
 int load_game(game_info_t *game_info)
 {
     if (load_logger(game_info) == 84 ||
-        load_window(&game_info->window) == 84)
+        load_window(&game_info->window) == 84 ||
+        load_clock(&game_info->clock) == 84)
         return 84;
     game_info->scene = GAME;
     return 0;
