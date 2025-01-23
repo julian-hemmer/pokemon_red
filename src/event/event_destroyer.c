@@ -7,6 +7,8 @@
 
 #include "pkm_event.h"
 
+#include <stdlib.h>
+
 static void free_handler(event_handler_t *handler)
 {
     free(handler);
@@ -34,7 +36,7 @@ void destoy_handler(
     }
 }
 
-void destoy_handlers(game_info_t *game_info) 
+void destoy_handlers(game_info_t *game_info)
 {
     event_handler_t *handler = game_info->handlers;
     event_handler_t *next_handler = NULL;
@@ -46,4 +48,3 @@ void destoy_handlers(game_info_t *game_info)
     }
     game_info->handlers = NULL;
 }
-

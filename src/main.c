@@ -11,19 +11,6 @@
 #include "pkm_logger.h"
 #include "pkm_event.h"
 
-static void test(game_info_t *game_info)
-{
-    event_handler_t *handler = NULL;
-
-    dump_event_handler(game_info);
-    register_handler(game_info, (event_handler_info_t){ .priority = HIGH });
-    register_handler(game_info, (event_handler_info_t){ .priority = NORMAL });
-    register_handler(game_info, (event_handler_info_t){ .priority = LOW });
-    dump_event_handler(game_info);
-    destoy_handlers(game_info);
-    dump_event_handler(game_info);
-}
-
 int main(int, const char **)
 {
     game_info_t game_info = { 0 };
@@ -33,7 +20,6 @@ int main(int, const char **)
         destoy_game(&game_info);
         return 84;
     }
-    test(&game_info);
     destoy_game(&game_info);
     return 0;
 }

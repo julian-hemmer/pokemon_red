@@ -23,7 +23,6 @@ SRC	= \
 	src/printf/my_asprintf.c	\
 	src/printf/my_asvprintf.c	\
 	\
-	src/util/sort/merge_sort.c	\
 	src/util/file_util.c	\
 	src/util/string_util.c
 

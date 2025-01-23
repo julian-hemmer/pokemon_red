@@ -10,9 +10,11 @@
 
     #include "pkm_scene.h"
     #include "pokemon.h"
+    #include "sort_util.h"
 
 typedef enum {
-    MOUSE_PRESSED
+    MOUSE_PRESSED,
+    MOUSE_RELEASED
 } event_type_t;
 
 typedef enum {
@@ -44,7 +46,8 @@ typedef struct {
     void *event_data;
 } event_data_t;
 
-typedef int (*event_handling_function_t)(event_data_t *event_data);
+typedef void (*event_handling_function_t)(
+    game_info_t *game_info, event_data_t *event_data);
 
 /**
  * Used only to create and event handler.
@@ -53,6 +56,7 @@ typedef struct {
     event_priority_t priority;
     event_type_t target_event;
     scene_t target_scene;
+    bool ignore_canceled;
 
     event_handling_function_t handling_function;
 } event_handler_info_t;
@@ -61,6 +65,7 @@ typedef struct event_handler {
     event_priority_t priority;
     event_type_t target_event;
     scene_t target_scene;
+    bool ignore_canceled;
     int call_count;
 
     event_handling_function_t handling_function;
@@ -89,5 +94,12 @@ void process_event(
     event_data_t *data);
 
 void dump_event_handler(game_info_t *game_info);
+
+int event_priority_ascending(void *o1, void *o2);
+int event_priority_descending(void *o1, void *o2);
+
+void sort_event(
+    game_info_t *game_info,
+    sort_function_t compare);
 
 #endif /* !EVENT_H */

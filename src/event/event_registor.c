@@ -17,6 +17,8 @@ static void transfer_data(
     new_handler->priority = handler_info.priority;
     new_handler->target_event = handler_info.target_event;
     new_handler->target_scene = handler_info.target_scene;
+    new_handler->ignore_canceled = handler_info.ignore_canceled;
+    new_handler->call_count = 0;
 }
 
 event_handler_creation_t register_handler(
@@ -34,5 +36,6 @@ event_handler_creation_t register_handler(
     transfer_data(new_handler, handler_info);
     new_handler->next_handler = game_info->handlers;
     game_info->handlers = new_handler;
+    sort_event(game_info, &event_priority_descending);
     return creation_data;
 }

@@ -6,95 +6,77 @@
 */
 
 #include "pkm_event.h"
-#include "sort_util.h"
 
-static event_handler_t *get_last_elem(event_handler_t **list_ptr)
+static event_handler_t *merge(event_handler_t *left,
+    event_handler_t *right, sort_function_t compare)
 {
-    event_handler_t *cpy = *list_ptr;
-
-    if (cpy == NULL)
-        return NULL;
-    while (cpy->next_handler != NULL) {
-        cpy = cpy->next_handler;
-    }
-    return cpy;
-}
-
-static void process_half(event_handler_t **half,
-    event_handler_t **new_node)
-{
-    event_handler_t *temp = 0;
-
-    if ((*half) == NULL)
-        return;
-    if ((*new_node) == NULL) {
-        (*new_node) = (*half);
-        (*half) = (*half)->next_handler;
-        (*new_node)->next_handler = NULL;
+    if (!left)
+        return right;
+    if (!right)
+        return left;
+    if (compare(left, right) <= 0) {
+        left->next_handler = merge(left->next_handler, right, compare);
+        return left;
     } else {
-        temp = (*half);
-        get_last_elem(new_node)->next_handler = temp;
-        (*half) = (*half)->next_handler;
-        temp->next_handler = NULL;
-        get_last_elem(new_node)->next_handler = NULL;
+        right->next_handler = merge(left, right->next_handler, compare);
+        return right;
     }
 }
 
-static int half_checker(event_handler_t **first_half,
-    event_handler_t **second_half,
-    event_handler_t **new_node, sort_function_t *compare)
+static void split_list(event_handler_t *source,
+    event_handler_t **front, event_handler_t **back)
 {
-    if ((*first_half) == NULL || ((*second_half) != NULL && (*compare)(
-            (*first_half), (*second_half)) > 0)) {
-        process_half(second_half, new_node);
-        return 1;
-    }
-    return 0;
-}
+    event_handler_t *slow = source;
+    event_handler_t *fast = source->next_handler;
 
-static event_handler_t *merge_back_list(
-    event_handler_t *first_half, event_handler_t *second_half,
-    int (*cmp[])(void *, void *))
-{
-    event_handler_t *new_node = 0;
-    sort_function_t *compare = cmp;
-
-    while (first_half != NULL || second_half != NULL) {
-        if (half_checker(&first_half, &second_half, &new_node, compare) ||
-            half_checker(&second_half, &first_half, &new_node, compare)) {
-            compare = cmp;
-            continue;
+    while (fast) {
+        fast = fast->next_handler;
+        if (fast) {
+            slow = slow->next_handler;
+            fast = fast->next_handler;
         }
-        compare++;
-        if ((*compare) != 0)
-            continue;
-        process_half(&first_half, &new_node);
-        process_half(&second_half, &new_node);
-        compare = cmp;
     }
-    return new_node;
+    (*front) = source;
+    (*back) = slow->next_handler;
+    slow->next_handler = NULL;
 }
 
-void ll_sort(event_handler_t **pivot,
-    int (*cmp[])(void *, void *))
+static void merge_sort(
+    event_handler_t **handlers,
+    sort_function_t compare)
 {
-    event_handler_t *first_half = 0;
-    event_handler_t *second_half = 0;
-    event_handler_t *checker = 0;
+    event_handler_t *front = NULL;
+    event_handler_t *back = NULL;
 
-    if (pivot == 0 || *pivot == 0 || (*pivot)->next_handler == 0)
+    if (!handlers || !(*handlers) ||
+        !((*handlers)->next_handler)) {
         return;
-    first_half = *pivot;
-    checker = *pivot;
-    for (int i = 1; checker->next_handler != NULL; i++) {
-        if (i % 2 == 0)
-            first_half = first_half->next_handler;
-        checker = checker->next_handler;
     }
-    second_half = first_half->next_handler;
-    first_half->next_handler = NULL;
-    first_half = *pivot;
-    ll_sort(&second_half, cmp);
-    ll_sort(&first_half, cmp);
-    (*pivot) = merge_back_list(first_half, second_half, cmp);
+    split_list((*handlers), &front, &back);
+    merge_sort(&front, compare);
+    merge_sort(&back, compare);
+    (*handlers) = merge(front, back, compare);
+}
+
+int event_priority_ascending(void *o1, void *o2)
+{
+    event_handler_t *h1 = ((event_handler_t *) o1);
+    event_handler_t *h2 = ((event_handler_t *) o2);
+
+    return h1->priority - h2->priority;
+}
+
+int event_priority_descending(void *o1, void *o2)
+{
+    event_handler_t *h1 = ((event_handler_t *) o1);
+    event_handler_t *h2 = ((event_handler_t *) o2);
+
+    return h2->priority - h1->priority;
+}
+
+void sort_event(
+    game_info_t *game_info,
+    sort_function_t compare)
+{
+    merge_sort(&(game_info->handlers), compare);
 }

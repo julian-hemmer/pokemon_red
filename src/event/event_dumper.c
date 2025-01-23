@@ -18,10 +18,10 @@ void dump_event_handler(game_info_t *game_info)
     for (uint64_t i = 0; handlers != NULL; i++) {
         LOG_INFO(game_info, "[%i] Type[%i] | "
             "Priority[%i] | Scene[%i] | "
-            "CallCount[%i].",
+            "CallCount[%i] | IgnoreCanceled[%i].",
             i, handlers->target_event,
             handlers->priority, handlers->target_scene,
-            handlers->call_count);
+            handlers->call_count, handlers->ignore_canceled);
         handlers = handlers->next_handler;
     }
     LOG_INFO(game_info, "</EventHandlerDump>");
