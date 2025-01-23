@@ -5,10 +5,16 @@
 ## Binary Makefile
 ##
 
-SRC	= src/main.c	\
+SRC	= \
+	src/main.c	\
 	\
 	src/logger/logger.c	\
 	src/logger/type/info.c	\
+	\
+	src/event/event_destroyer.c	\
+	src/event/event_dumper.c	\
+	src/event/event_processor.c	\
+	src/event/event_registor.c	\
 	\
 	src/game_loader.c	\
 	src/game_destroyer.c	\

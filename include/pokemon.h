@@ -8,12 +8,19 @@
 #ifndef POKEMON_H
     #define POKEMON_H
 
-    #include "logger.h"
+    #include "pkm_logger.h"
+    #include "pkm_scene.h"
+
+    #include <SFML/Graphics.h>
 
 typedef struct game_info {
+    sfRenderWindow *window;
     char *window_name;
 
+    scene_t scene;
+
     logger_t *logger;
+    struct event_handler *handlers;
 } game_info_t;
 
 int load_game(game_info_t *game_info);

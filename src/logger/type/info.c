@@ -11,7 +11,7 @@
 
 #include <time.h>
 
-#include "logger.h"
+#include "pkm_logger.h"
 #include "asprintf.h"
 
 static char *format_message(const char *message, va_list list)
@@ -30,12 +30,12 @@ static char *format_message(const char *message, va_list list)
     return final_message;
 }
 
-void log_info(const logger_t *config, const char *message, ...)
+void log_info(const logger_t *logger, const char *message, ...)
 {
     va_list list;
     char *final_message = 0;
 
-    if (!config->enabled)
+    if (!logger->enabled)
         return;
     va_start(list, message);
     final_message = format_message(message, list);
@@ -43,10 +43,10 @@ void log_info(const logger_t *config, const char *message, ...)
         va_end(list);
         return;
     }
-    if (config->console_out)
+    if (logger->console_out)
         printf("%s", final_message);
-    if (config->file != NULL)
-        fprintf(config->file, "%s", final_message);
+    if (logger->file != NULL)
+        fprintf(logger->file, "%s", final_message);
     va_end(list);
     free(final_message);
 }

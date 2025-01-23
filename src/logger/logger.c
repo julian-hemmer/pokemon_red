@@ -5,7 +5,7 @@
 ** logger
 */
 
-#include "logger.h"
+#include "pkm_logger.h"
 #include "file_util.h"
 
 #include <stdlib.h>
@@ -36,9 +36,9 @@ logger_t *init_logger(const char *file)
     return config;
 }
 
-void destroy_logger(logger_t *logger_config)
+void destroy_logger(logger_t *logger)
 {
-    if (logger_config->file != NULL)
-        fclose(logger_config->file);
-    free(logger_config);
+    if (logger->file != NULL)
+        fclose(logger->file);
+    free(logger);
 }
