@@ -13,11 +13,11 @@ static void render(game_info_t *game_info)
 {
     sfRenderWindow *window = game_info->window;
 
-    sfRenderWindow_clear(window, sfWhite);
+    sfRenderWindow_clear(window, sfRed);
     sfRenderWindow_display(window);
 }
 
-static void update(game_info_t *game_info, delta_t *delta)
+static void update(game_info_t *game_info, delta_t *)
 {
     sfRenderWindow *window = game_info->window;
     sfEvent event;
@@ -26,10 +26,22 @@ static void update(game_info_t *game_info, delta_t *delta)
         process_csfml_event(game_info, event);
 }
 
+void handle(game_info_t *game_info, event_data_t *)
+{
+    LOG_INFO(game_info, "MOUSE RELEASED AT []");
+}
+
 int launch_game(game_info_t *game_info)
 {
     delta_t delta = create_delta(1.0);
 
+    register_handler(game_info, (event_handler_info_t){
+        .priority = NORMAL,
+        .target_event = MOUSE_RELEASED,
+        .ignore_canceled = true,
+        .target_scene = GAME,
+        .handling_function = &handle
+    });
     game_info->running = true;
     sfClock_restart(game_info->clock);
     while (game_info->running) {

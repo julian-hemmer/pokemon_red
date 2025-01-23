@@ -16,6 +16,11 @@ SRC	= \
 	src/event/event_dumper.c	\
 	src/event/event_processor.c	\
 	src/event/event_registor.c	\
+	src/event/resolver/button/csfml_button_map.c	\
+	src/event/resolver/event/csfml_event_map.c	\
+	src/event/resolver/event/csfml_event_mouse_pressed.c	\
+	src/event/resolver/event/csfml_event_mouse_released.c	\
+	src/event/resolver/event/csfml_event_window_closed.c	\
 	\
 	src/camera/camera.c	\
 	\

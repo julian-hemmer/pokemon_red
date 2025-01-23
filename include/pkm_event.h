@@ -12,10 +12,76 @@
     #include "pokemon.h"
     #include "sort_util.h"
 
+/*+----------+----------+*/
+/*+    EVENT RESOLVER   +*/
+/*+----------+----------+*/
+
+typedef void (*csfml_resolver_function)
+    (game_info_t *game_info, sfEvent event);
+
+typedef struct csfml_event_resolver {
+    sfEventType type;
+    csfml_resolver_function function;
+} csfml_event_resolver_t;
+
+extern const csfml_event_resolver_t CSFML_EVENT_RESOLVER[];
+extern const size_t CSFML_EVENT_RESOLVER_COUNT;
+
+void csfml_event_mouse_pressed(game_info_t *game_info, sfEvent event);
+void csfml_event_mouse_released(game_info_t *game_info, sfEvent event);
+void csfml_window_closed_event(game_info_t *game_info, sfEvent event);
+
+/*+----------+----------+*/
+/*+        EVENT        +*/
+/*+----------+----------+*/
+
 typedef enum {
     MOUSE_PRESSED,
-    MOUSE_RELEASED
+    MOUSE_RELEASED,
+    WINDOW_CLOSED
 } event_type_t;
+
+/*+----------+----------+*/
+/*+        MOUSE        +*/
+/*+----------+----------+*/
+
+typedef enum {
+    BUTTON_LEFT,
+    BUTTON_RIGHT,
+    BUTTON_MIDDLE,
+    BUTTON_XBUTTON1,
+    BUTTON_XBUTTON2
+} mouse_button_t;
+
+typedef struct csfml_button_resolver {
+    sfMouseButton csfmlButton;
+    mouse_button_t pkmButton;
+} csfml_button_resolver_t;
+
+extern const csfml_button_resolver_t CSFML_BUTTON_RESOLVER[];
+
+mouse_button_t csfml_button_resolver(sfMouseButton button);
+sfMouseButton pkm_button_resolver(mouse_button_t button);
+
+/*+        PRESSED        +*/
+
+typedef struct {
+    mouse_button_t button;
+    int x;
+    int y;
+} mouse_pressed_event_t;
+
+/*+      RELEASED        +*/
+
+typedef struct {
+    mouse_button_t button;
+    int x;
+    int y;
+} mouse_released_event_t;
+
+/*+----------+----------+*/
+/*+        -----        +*/
+/*+----------+----------+*/
 
 typedef enum {
     HIGHEST = 0xFFFF,
@@ -24,20 +90,6 @@ typedef enum {
     LOW = 0x000F,
     LOWEST = 0x0000
 } event_priority_t;
-
-typedef enum {
-    LEFT,
-    RIGHT,
-    MIDDLE,
-    XBUTTON1,
-    XBUTTON2
-} mouse_button_t;
-
-typedef struct {
-    mouse_button_t button;
-    int x;
-    int y;
-} mouse_pressed_event_t;
 
 typedef struct {
     event_type_t type;
