@@ -15,7 +15,6 @@
 
 typedef struct game_info {
     sfRenderWindow *window;
-    char *window_name;
 
     scene_t scene;
 

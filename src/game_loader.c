@@ -45,5 +45,6 @@ int load_game(game_info_t *game_info)
     if (load_logger(game_info) == 84 ||
         load_window(&game_info->window) == 84)
         return 84;
+    game_info->scene = GAME;
     return 0;
 }

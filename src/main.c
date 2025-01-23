@@ -11,14 +11,6 @@
 #include "pkm_logger.h"
 #include "pkm_event.h"
 
-static void test(game_info_t *game_info)
-{
-    register_handler(game_info, (event_handler_info_t){ 0 });
-    register_handler(game_info, (event_handler_info_t){ 0 });
-    register_handler(game_info, (event_handler_info_t){ 0 });
-    dump_event_handler(game_info);
-}
-
 int main(int, const char **)
 {
     game_info_t game_info = { 0 };
