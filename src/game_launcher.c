@@ -11,7 +11,10 @@
 
 static void render(game_info_t *game_info)
 {
-    return;
+    sfRenderWindow *window = game_info->window;
+
+    sfRenderWindow_clear(window, sfWhite);
+    sfRenderWindow_display(window);
 }
 
 static void update(game_info_t *game_info, delta_t *delta)

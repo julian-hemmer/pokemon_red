@@ -17,9 +17,9 @@ SRC	= \
 	src/event/event_processor.c	\
 	src/event/event_registor.c	\
 	\
-	src/camera/camera.c
+	src/camera/camera.c	\
 	\
-	src/delta/delta.c
+	src/delta/delta.c	\
 	\
 	src/game_loader.c	\
 	src/game_launcher.c	\

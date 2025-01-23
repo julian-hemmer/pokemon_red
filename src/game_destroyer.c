@@ -19,5 +19,6 @@ int destoy_game(game_info_t *game_info)
 {
     destoy_handlers(game_info);
     clean_logger(game_info);
+    sfRenderWindow_destroy(game_info->window);
     return 0;
 }
