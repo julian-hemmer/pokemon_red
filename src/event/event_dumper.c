@@ -16,9 +16,12 @@ void dump_event_handler(game_info_t *game_info)
 
     LOG_INFO(game_info, "<EventHandlerDump>");
     for (uint64_t i = 0; handlers != NULL; i++) {
-        LOG_INFO(game_info, "[%i] Type[%i] | Priority[%i] | Scene[%i].",
+        LOG_INFO(game_info, "[%i] Type[%i] | "
+            "Priority[%i] | Scene[%i] | "
+            "CallCount[%i].",
             i, handlers->target_event,
-            handlers->priority, handlers->target_scene);
+            handlers->priority, handlers->target_scene,
+            handlers->call_count);
         handlers = handlers->next_handler;
     }
     LOG_INFO(game_info, "</EventHandlerDump>");

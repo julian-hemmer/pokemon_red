@@ -61,6 +61,7 @@ typedef struct event_handler {
     event_priority_t priority;
     event_type_t target_event;
     scene_t target_scene;
+    int call_count;
 
     event_handling_function_t handling_function;
 
@@ -79,6 +80,9 @@ event_handler_creation_t register_handler(
 void destoy_handler(
     game_info_t *game_info,
     event_handler_t *handler);
+
+void destoy_handlers(
+    game_info_t *game_info);
 
 void process_event(
     game_info_t *game_info,

@@ -6,6 +6,7 @@
 */
 
 #include "pokemon.h"
+#include "pkm_event.h"
 
 static void clean_logger(game_info_t *game_info)
 {
@@ -16,6 +17,7 @@ static void clean_logger(game_info_t *game_info)
 
 int destoy_game(game_info_t *game_info)
 {
+    destoy_handlers(game_info);
     clean_logger(game_info);
     return 0;
 }

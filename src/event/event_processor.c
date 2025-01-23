@@ -2,9 +2,14 @@
 ** EPITECH PROJECT, 2025
 ** pokemon_red
 ** File description:
-** event_destroyer
+** event_processor
 */
 
-#include "event.h"
+#include "pkm_event.h"
 
-
+void process_event(
+    game_info_t *game_info,
+    event_data_t *data)
+{
+    
+}

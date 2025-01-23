@@ -11,6 +11,7 @@ SRC	= \
 	src/logger/logger.c	\
 	src/logger/type/info.c	\
 	\
+	src/event/event_sort.c	\
 	src/event/event_destroyer.c	\
 	src/event/event_dumper.c	\
 	src/event/event_processor.c	\
@@ -22,6 +23,7 @@ SRC	= \
 	src/printf/my_asprintf.c	\
 	src/printf/my_asvprintf.c	\
 	\
+	src/util/sort/merge_sort.c	\
 	src/util/file_util.c	\
 	src/util/string_util.c
 
