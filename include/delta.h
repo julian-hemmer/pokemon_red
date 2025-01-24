@@ -23,7 +23,7 @@
 
     #include "pokemon.h"
 
-typedef struct {
+typedef struct delta {
     double original;
     double delta;
     double multiplier;

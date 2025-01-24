@@ -36,6 +36,8 @@ void csfml_window_closed_event(game_info_t *game_info, sfEvent event);
 /*+----------+----------+*/
 
 typedef enum {
+    PRE_UPDATE,
+    POST_UPDATE,
     MOUSE_PRESSED,
     MOUSE_RELEASED,
     WINDOW_CLOSED

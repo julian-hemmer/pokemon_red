@@ -8,37 +8,41 @@
 #include "pokemon.h"
 #include "delta.h"
 #include "pkm_event.h"
+#include "pkm_camera.h"
 
 static void render(game_info_t *game_info)
 {
     sfRenderWindow *window = game_info->window;
 
     sfRenderWindow_clear(window, sfRed);
+    camera_draw_line(game_info->camera,
+        pkm_vector2f(10, 10), pkm_vector2f(100, 100), 2.0);
     sfRenderWindow_display(window);
 }
 
 static void update(game_info_t *game_info, delta_t *)
 {
+    event_data_t pre_update = {
+        .event_data = NULL, .is_canceled = false, .type = PRE_UPDATE
+    };
+    event_data_t post_update = {
+        .event_data = NULL, .is_canceled = false, .type = POST_UPDATE
+    };
     sfRenderWindow *window = game_info->window;
     sfEvent event;
 
+    process_event(game_info, &pre_update);
     while (sfRenderWindow_pollEvent(window, &event))
         process_csfml_event(game_info, event);
-}
-
-void handle(game_info_t *game_info, event_data_t *)
-{
-    LOG_INFO(game_info, "MOUSE RELEASED AT []");
+    process_event(game_info, &post_update);
 }
 
 int launch_game(game_info_t *game_info)
 {
     delta_t delta = create_delta(1.0);
 
-    register_handler(game_info, (event_handler_info_t){
-        NORMAL, MOUSE_RELEASED, GAME, true, &handle
-    });
     game_info->running = true;
+    game_info->delta = &delta;
     sfClock_restart(game_info->clock);
     while (game_info->running) {
         update_delta(game_info, &delta);

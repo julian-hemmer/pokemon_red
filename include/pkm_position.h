@@ -8,7 +8,8 @@
 #ifndef PKM_POSITION_H
     #define PKM_POSITION_H
 
-    #include "pkm_int.h"
+    #include <stdint.h>
+    #include <SFML/Graphics.h>
 
 /*+      2D DECIMAL        +*/
 
@@ -21,6 +22,18 @@ typedef struct size2f {
     double width;
     double height;
 } size2f_t;
+
+/*+      CONVERTOR        +*/
+
+sfVector2f pkm_vector2f_to_csfml(vector2f_t pkm_vector2f);
+sfVector2f pkm_size2f_to_csfml(size2f_t pkm_size2f);
+vector2f_t csfml_vector2f_to_pkm(sfVector2f csfml_vector2f);
+size2f_t csfml_size2f_to_pkm(sfVector2f csfml_vector2f);
+
+/*+      CONSTRUCTOR        +*/
+
+vector2f_t pkm_vector2f(double x, double y);
+size2f_t pkm_size2f(double width, double height);
 
 /*+      2D UNSIGNED        +*/
 

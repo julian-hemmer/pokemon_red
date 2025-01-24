@@ -7,6 +7,7 @@
 
 #include "pokemon.h"
 #include "asprintf.h"
+#include "pkm_camera.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,7 +49,9 @@ static int load_clock(sfClock **clock)
     return 0;
 }
 
-static int load_camera(pkm_camera_t **camera)
+static int load_camera(
+    game_info_t *game_info,
+    pkm_camera_t **camera)
 {
     vector2f_t default_offset = {
         .x = 0.0, .y = 0.0
@@ -58,7 +61,8 @@ static int load_camera(pkm_camera_t **camera)
         .height = WINDOW_HEIGHT
     };
 
-    (*camera) = create_camera(default_offset, default_size);
+    (*camera) = create_camera(
+        game_info, default_offset, default_size);
     if ((*camera) == NULL)
         return 84;
     return 0;
@@ -69,7 +73,7 @@ int load_game(game_info_t *game_info)
     if (load_logger(game_info) == 84 ||
         load_window(&game_info->window) == 84 ||
         load_clock(&game_info->clock) == 84 ||
-        load_camera(&game_info->camera) == 84)
+        load_camera(game_info, &game_info->camera) == 84)
         return 84;
     game_info->scene = GAME;
     return 0;

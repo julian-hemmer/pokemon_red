@@ -23,6 +23,13 @@ SRC	= \
 	src/event/resolver/event/csfml_event_window_closed.c	\
 	\
 	src/camera/camera.c	\
+	src/camera/camera_handler.c	\
+	src/camera/camera_convertor.c	\
+	src/camera/draw/camera_draw_line.c	\
+	\
+	src/position/convertor/position_float_convertor.c	\
+	\
+	src/position/constructor/position_float_constructor.c	\
 	\
 	src/delta/delta.c	\
 	\

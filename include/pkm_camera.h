@@ -9,20 +9,36 @@
     #define PKM_CAMERA_H
 
     #include "pkm_position.h"
+    #include "pkm_event.h"
+    #include "pkm_logger.h"
+    #include "pokemon.h"
+    #include "delta.h"
+
+    #define CAMERA_MOVEMENT_SPEED 100
 
 typedef struct pkm_camera {
+    game_info_t *game_info;
     vector2f_t offset;
     vector2f_t position;
     size2f_t size;
 } pkm_camera_t;
 
 pkm_camera_t *create_camera(
-    vector2f_t offset, size2f_t size);
+    game_info_t *game_info,
+    vector2f_t offset,
+    size2f_t size);
 
-void draw_line(
+vector2f_t camera_convert_global_position(
+    pkm_camera_t *camera, vector2f_t global_position);
+vector2f_t camera_convert_local_position(
+    pkm_camera_t *camera, vector2f_t local_position);
+
+void camera_draw_line(
     pkm_camera_t *camera,
     vector2f_t start_position,
     vector2f_t end_position,
     double thickness);
+
+void camera_movement_handler(game_info_t *game_info, event_data_t *);
 
 #endif /* !PKM_CAMERA_H */

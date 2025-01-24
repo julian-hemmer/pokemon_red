@@ -10,7 +10,6 @@
 
     #include "pkm_logger.h"
     #include "pkm_scene.h"
-    #include "pkm_camera.h"
 
     #include <SFML/Graphics.h>
 
@@ -20,10 +19,11 @@
 typedef struct game_info {
     sfRenderWindow *window;
     sfClock *clock;
-    pkm_camera_t *camera;
+    struct pkm_camera *camera;
 
     scene_t scene;
     bool running;
+    struct delta *delta;
 
     logger_t *logger;
     struct event_handler *handlers;
