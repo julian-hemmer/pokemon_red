@@ -16,12 +16,12 @@
 /*+    EVENT RESOLVER   +*/
 /*+----------+----------+*/
 
-typedef void (*csfml_resolver_function)
-    (game_info_t *game_info, sfEvent event);
+typedef void (*csfml_resolver_function_t)(game_info_t *game_info,
+    sfEvent event);
 
 typedef struct csfml_event_resolver {
     sfEventType type;
-    csfml_resolver_function function;
+    csfml_resolver_function_t function;
 } csfml_event_resolver_t;
 
 extern const csfml_event_resolver_t CSFML_EVENT_RESOLVER[];

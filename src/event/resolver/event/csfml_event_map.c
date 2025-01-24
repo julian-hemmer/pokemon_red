@@ -13,5 +13,5 @@ const csfml_event_resolver_t CSFML_EVENT_RESOLVER[] = {
     {sfEvtMouseButtonPressed, &csfml_event_mouse_pressed}
 };
 
-const size_t CSFML_EVENT_RESOLVER_COUNT =
-    sizeof(CSFML_EVENT_RESOLVER) / sizeof(csfml_event_resolver_t);
+const size_t CSFML_EVENT_RESOLVER_COUNT = sizeof(
+    CSFML_EVENT_RESOLVER) / sizeof(csfml_event_resolver_t);

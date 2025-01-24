@@ -11,8 +11,8 @@ const csfml_button_resolver_t CSFML_BUTTON_RESOLVER[] = {
     {sfMouseLeft, BUTTON_LEFT},
 };
 
-const size_t CSFML_BUTTON_RESOLVER_COUNT =
-    sizeof(CSFML_BUTTON_RESOLVER) / sizeof(csfml_button_resolver_t);
+const size_t CSFML_BUTTON_RESOLVER_COUNT = sizeof(
+    CSFML_BUTTON_RESOLVER) / sizeof(csfml_button_resolver_t);
 
 mouse_button_t csfml_button_resolver(sfMouseButton button)
 {

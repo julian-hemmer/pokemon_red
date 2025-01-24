@@ -36,11 +36,7 @@ int launch_game(game_info_t *game_info)
     delta_t delta = create_delta(1.0);
 
     register_handler(game_info, (event_handler_info_t){
-        .priority = NORMAL,
-        .target_event = MOUSE_RELEASED,
-        .ignore_canceled = true,
-        .target_scene = GAME,
-        .handling_function = &handle
+        NORMAL, MOUSE_RELEASED, GAME, true, &handle
     });
     game_info->running = true;
     sfClock_restart(game_info->clock);
