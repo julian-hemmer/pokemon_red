@@ -33,11 +33,16 @@ vector2f_t camera_convert_global_position(
 vector2f_t camera_convert_local_position(
     pkm_camera_t *camera, vector2f_t local_position);
 
+typedef struct {
+    vector2f_t start_position;
+    vector2f_t end_position;
+    double thickness;
+    sfColor color;
+} camera_line_t;
+
 void camera_draw_line(
     pkm_camera_t *camera,
-    vector2f_t start_position,
-    vector2f_t end_position,
-    double thickness);
+    camera_line_t line);
 
 void camera_movement_handler(game_info_t *game_info, event_data_t *);
 
