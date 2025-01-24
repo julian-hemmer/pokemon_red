@@ -5,8 +5,8 @@
 ** logger
 */
 
-#ifndef LOGGER
-    #define LOGGER
+#ifndef PKM_LOGGER_H
+    #define PKM_LOGGER_H
 
     #include <stdbool.h>
     #include <stdio.h>
@@ -25,4 +25,4 @@ logger_t *init_logger(const char *file);
 
     #define LOG_INFO(g, f...) (log_info(g->logger, f))
 
-#endif /* !LOGGER */
+#endif /* !PKM_LOGGER_H */

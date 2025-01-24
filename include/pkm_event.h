@@ -5,8 +5,8 @@
 ** event
 */
 
-#ifndef EVENT_H
-    #define EVENT_H
+#ifndef PKM_EVENT_H
+    #define PKM_EVENT_H
 
     #include "pkm_scene.h"
     #include "pokemon.h"
@@ -158,4 +158,4 @@ void sort_event(
     game_info_t *game_info,
     sort_function_t compare);
 
-#endif /* !EVENT_H */
+#endif /* !PKM_EVENT_H */

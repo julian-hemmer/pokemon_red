@@ -5,11 +5,11 @@
 ** scene
 */
 
-#ifndef SCENE_H
-    #define SCENE_H
+#ifndef PKM_SCENE_H
+    #define PKM_SCENE_H
 
 typedef enum scene {
     GAME
 } scene_t;
 
-#endif /* !SCENE_H */
+#endif /* !PKM_SCENE_H */
