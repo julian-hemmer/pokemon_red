@@ -51,7 +51,7 @@ CFLAGS	= 	$(WARNING) $(INCLUDE) -g
 
 OBJ		= 	$(SRC:src/%.c=build/obj/%.o)
 
-LIBS	=	-lcsfml-window -lcsfml-graphics -lcsfml-system
+LIBS	=	-lcsfml-window -lcsfml-graphics -lcsfml-system -lm
 
 NAME	= 	PokemonRed
 

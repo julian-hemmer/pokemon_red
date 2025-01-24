@@ -16,7 +16,7 @@ static void render(game_info_t *game_info)
 
     sfRenderWindow_clear(window, sfRed);
     camera_draw_line(game_info->camera,
-        pkm_vector2f(10, 10), pkm_vector2f(100, 100), 2.0);
+        pkm_vector2f(10, 10), pkm_vector2f(100, 100), 20.0);
     sfRenderWindow_display(window);
 }
 
