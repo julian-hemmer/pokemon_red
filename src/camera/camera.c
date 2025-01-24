@@ -13,7 +13,7 @@
 static void load_handler(game_info_t *game_info)
 {
     register_handler(game_info, (event_handler_info_t){
-        NORMAL, PRE_UPDATE, GAME, true, &camera_movement_handler
+        NORMAL, PRE_UPDATE, SCENE_GAME, true, &camera_movement_handler
     });
 }
 

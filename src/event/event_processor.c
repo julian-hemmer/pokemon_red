@@ -31,7 +31,8 @@ void process_event(
     while (handler != NULL) {
         if ((data->type != handler->target_event) ||
             (data->is_canceled && handler->ignore_canceled) ||
-            (game_info->scene != handler->target_scene)) {
+            (game_info->scene != handler->target_scene
+                && handler->target_scene != SCENE_ALL)) {
             handler = handler->next_handler;
             continue;
         }

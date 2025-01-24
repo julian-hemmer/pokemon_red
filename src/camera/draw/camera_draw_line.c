@@ -37,6 +37,7 @@ void camera_draw_line(
     sfVertexArray_append(line, (sfVertex){ { end_position.x + offset1.x, end_position.y + offset1.y }, sfWhite });
     sfVertexArray_append(line, (sfVertex){ { start_position.x + offset2.x, start_position.y + offset2.y }, sfWhite });
     sfVertexArray_append(line, (sfVertex){ { end_position.x + offset2.x, end_position.y + offset2.y }, sfWhite });
+    
     sfRenderWindow_drawVertexArray(window, line, NULL);
     sfVertexArray_destroy(line);
 }

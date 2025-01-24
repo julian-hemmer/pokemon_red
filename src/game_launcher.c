@@ -14,7 +14,7 @@ static void render(game_info_t *game_info)
 {
     sfRenderWindow *window = game_info->window;
 
-    sfRenderWindow_clear(window, sfRed);
+    sfRenderWindow_clear(window, sfBlack);
     camera_draw_line(game_info->camera,
         pkm_vector2f(10, 10), pkm_vector2f(100, 100), 20.0);
     sfRenderWindow_display(window);

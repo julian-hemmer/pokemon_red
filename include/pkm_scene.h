@@ -9,7 +9,8 @@
     #define PKM_SCENE_H
 
 typedef enum scene {
-    GAME
+    SCENE_ALL,
+    SCENE_GAME
 } scene_t;
 
 #endif /* !PKM_SCENE_H */

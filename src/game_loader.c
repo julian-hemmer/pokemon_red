@@ -68,6 +68,13 @@ static int load_camera(
     return 0;
 }
 
+static void load_basic_handlers(game_info_t *game_info)
+{
+    register_handler(game_info, (event_handler_info_t){
+        LOWEST, WINDOW_CLOSED, SCENE_ALL, false, &window_close_handler
+    });
+}
+
 int load_game(game_info_t *game_info)
 {
     if (load_logger(game_info) == 84 ||
@@ -75,6 +82,7 @@ int load_game(game_info_t *game_info)
         load_clock(&game_info->clock) == 84 ||
         load_camera(game_info, &game_info->camera) == 84)
         return 84;
-    game_info->scene = GAME;
+    game_info->scene = SCENE_GAME;
+    load_basic_handlers(game_info);
     return 0;
 }

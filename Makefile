@@ -21,6 +21,7 @@ SRC	= \
 	src/event/resolver/event/csfml_event_mouse_pressed.c	\
 	src/event/resolver/event/csfml_event_mouse_released.c	\
 	src/event/resolver/event/csfml_event_window_closed.c	\
+	src/event/handler/pkm_handler_window_close.c	\
 	\
 	src/camera/camera.c	\
 	src/camera/camera_handler.c	\

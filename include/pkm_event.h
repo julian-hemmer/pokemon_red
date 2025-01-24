@@ -160,4 +160,6 @@ void sort_event(
     game_info_t *game_info,
     sort_function_t compare);
 
+void window_close_handler(game_info_t *game_info, event_data_t *);
+
 #endif /* !PKM_EVENT_H */
