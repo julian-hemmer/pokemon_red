@@ -8,13 +8,14 @@
 #include "pkm_camera.h"
 
 #include <SFML/Graphics.h>
+#include <math.h>
 
 static void append_vertex(
     sfVertexArray* line,
     double x, double y,
     sfColor color)
 {
-    sfVertexArray_append(line, (sfVertex){ { x, y }, color });
+    sfVertexArray_append(line, (sfVertex){ { x, y }, color, { 0, 0 } });
 }
 
 static void set_line_data(
