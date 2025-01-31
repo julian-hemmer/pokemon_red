@@ -12,17 +12,18 @@
     #include "pokemon.h"
 
 typedef char byte_t;
+typedef unsigned char ubyte_t;
 
 // Tile_id -> And identifier to know what kind of tile its is (Use for rendering and processeing)
 typedef struct pokemon_tile {
-    byte_t id;
-    byte_t state;
-    vector2f_t position;
+    ubyte_t id;
+    ubyte_t state;
+    vector2s_t position;
 } pokemon_tile_t;
 
 // The map is stored in 1d array. 
 typedef struct pokemon_map {
-    byte_t id;
+    ubyte_t id;
     pokemon_tile_t **map;
 } pokemon_map_t;
 
@@ -30,10 +31,10 @@ typedef struct pokemon_map_context {
     char *file_path;
     pokemon_map_t **maps;
 
-    byte_t current_map_id;
+    ubyte_t current_map_id;
 } pokemon_map_context_t;
 
-pokemon_tile_t *get_tile_at(pokemon_map_t *map, vector2f_t position);
+pokemon_tile_t *get_tile_at(pokemon_map_t *map, vector2s_t position);
 
 pokemon_map_context_t *load_map_context(char *map_filepath);
 void destroy_map(pokemon_map_t *map);

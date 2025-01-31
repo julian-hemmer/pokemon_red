@@ -59,4 +59,16 @@ typedef struct size2i {
     int64_t height;
 } size2i_t;
 
+/*+      2D short        +*/
+
+typedef struct vector2s {
+    int16_t x;
+    int16_t y;
+} vector2s_t;
+
+typedef struct size2i {
+    int16_t width;
+    int16_t height;
+} size2s_t;
+
 #endif /* !PKM_POSITION_H */
