@@ -66,7 +66,7 @@ typedef struct vector2s {
     int16_t y;
 } vector2s_t;
 
-typedef struct size2i {
+typedef struct size2s {
     int16_t width;
     int16_t height;
 } size2s_t;
