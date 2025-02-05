@@ -24,14 +24,20 @@ typedef struct pokemon_tile {
 // Circular linked list.
 // Sprite position is the position inside the texture.
 // The size if always the same see pokemon.h to see that.
-typedef struct pokemon_tile_context {
-    ubyte_t id;
+typedef struct pokemon_tile_state_context {
     ubyte_t state;
-
-    sfTexture *sprite_texture;
     vector2s_t sprite_position;
 
-    struct pokemon_tile_context *next_context;
+    struct pokemon_tile_state_context *next_context;
+} pokemon_tile_state_context_t;
+
+typedef struct pokemon_tile_context {
+    ubyte_t id;
+
+    char *texture_path;
+    sfTexture *sprite_texture;
+
+    pokemon_tile_state_context_t *state_context;
 } pokemon_tile_context_t;
 
 // The map is stored in 1d array.
