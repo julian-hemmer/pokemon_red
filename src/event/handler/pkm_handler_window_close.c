@@ -7,10 +7,10 @@
 
 #include "pkm_event.h"
 
-void window_close_handler(game_info_t *game_info, event_data_t *)
+void window_close_handler(game_context_t *game_context, event_data_t *)
 {
-    if (!game_info->running ||
-        !sfRenderWindow_isOpen(game_info->window))
+    if (!game_context->running ||
+        !sfRenderWindow_isOpen(game_context->window))
         return;
-    sfRenderWindow_close(game_info->window);
+    sfRenderWindow_close(game_context->window);
 }

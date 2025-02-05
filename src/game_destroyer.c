@@ -8,17 +8,17 @@
 #include "pokemon.h"
 #include "pkm_event.h"
 
-static void clean_logger(game_info_t *game_info)
+static void clean_logger(game_context_t *game_context)
 {
-    if (game_info->logger == NULL)
+    if (game_context->logger == NULL)
         return;
-    destroy_logger(game_info->logger);
+    destroy_logger(game_context->logger);
 }
 
-int destoy_game(game_info_t *game_info)
+int destoy_game(game_context_t *game_context)
 {
-    destoy_handlers(game_info);
-    clean_logger(game_info);
-    sfRenderWindow_destroy(game_info->window);
+    destoy_handlers(game_context);
+    clean_logger(game_context);
+    sfRenderWindow_destroy(game_context->window);
     return 0;
 }

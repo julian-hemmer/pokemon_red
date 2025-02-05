@@ -30,7 +30,7 @@ typedef struct delta {
     double total_elapsed;
 } delta_t;
 
-void update_delta(game_info_t *game_info, delta_t *delta);
+void update_delta(game_context_t *game_context, delta_t *delta);
 delta_t create_delta(double default_multiplier);
 
 #endif /* !DELTA_H */

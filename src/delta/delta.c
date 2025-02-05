@@ -7,10 +7,10 @@
 
 #include "delta.h"
 
-void update_delta(game_info_t *game_info, delta_t *delta)
+void update_delta(game_context_t *game_context, delta_t *delta)
 {
     double delta_ratio = MICRO_TO_DELTA(
-        sfClock_restart(game_info->clock).microseconds);
+        sfClock_restart(game_context->clock).microseconds);
 
     delta->original = delta_ratio;
     delta->delta = delta->original * delta->multiplier;

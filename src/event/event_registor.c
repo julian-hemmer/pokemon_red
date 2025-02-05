@@ -22,7 +22,7 @@ static void transfer_data(
 }
 
 event_handler_creation_t register_handler(
-    game_info_t *game_info,
+    game_context_t *game_context,
     event_handler_info_t handler_info)
 {
     event_handler_creation_t creation_data = { 0 };
@@ -34,8 +34,8 @@ event_handler_creation_t register_handler(
         return creation_data;
     }
     transfer_data(new_handler, handler_info);
-    new_handler->next_handler = game_info->handlers;
-    game_info->handlers = new_handler;
-    sort_event(game_info, &event_priority_descending);
+    new_handler->next_handler = game_context->handlers;
+    game_context->handlers = new_handler;
+    sort_event(game_context, &event_priority_descending);
     return creation_data;
 }

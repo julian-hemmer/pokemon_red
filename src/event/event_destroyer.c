@@ -15,11 +15,11 @@ static void free_handler(event_handler_t *handler)
 }
 
 void destoy_handler(
-    game_info_t *game_info,
+    game_context_t *game_context,
     event_handler_t *target_handler)
 {
     event_handler_t *previous = NULL;
-    event_handler_t *handler = game_info->handlers;
+    event_handler_t *handler = game_context->handlers;
 
     while (handler != NULL) {
         if (target_handler != handler) {
@@ -28,7 +28,7 @@ void destoy_handler(
             continue;
         }
         if (previous == NULL)
-            game_info->handlers = handler->next_handler;
+            game_context->handlers = handler->next_handler;
         else
             previous->next_handler = handler->next_handler;
         free_handler(handler);
@@ -36,9 +36,9 @@ void destoy_handler(
     }
 }
 
-void destoy_handlers(game_info_t *game_info)
+void destoy_handlers(game_context_t *game_context)
 {
-    event_handler_t *handler = game_info->handlers;
+    event_handler_t *handler = game_context->handlers;
     event_handler_t *next_handler = NULL;
 
     while (handler != NULL) {
@@ -46,5 +46,5 @@ void destoy_handlers(game_info_t *game_info)
         free_handler(handler);
         handler = next_handler;
     }
-    game_info->handlers = NULL;
+    game_context->handlers = NULL;
 }

@@ -47,7 +47,7 @@ void camera_draw_line(
     pkm_camera_t *camera,
     camera_line_t line)
 {
-    sfRenderWindow *window = camera->game_info->window;
+    sfRenderWindow *window = camera->game_context->window;
     sfVertexArray* vertex_line = sfVertexArray_create();
 
     line.start_position =

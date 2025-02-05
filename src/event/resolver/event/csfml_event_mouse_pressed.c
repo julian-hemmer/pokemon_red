@@ -7,7 +7,7 @@
 
 #include "pkm_event.h"
 
-void csfml_event_mouse_pressed(game_info_t *game_info, sfEvent event)
+void csfml_event_mouse_pressed(game_context_t *game_context, sfEvent event)
 {
     mouse_pressed_event_t pressed_data = {
         .x = event.mouseButton.x,
@@ -20,5 +20,5 @@ void csfml_event_mouse_pressed(game_info_t *game_info, sfEvent event)
         .event_data = &pressed_data
     };
 
-    process_event(game_info, &data);
+    process_event(game_context, &data);
 }

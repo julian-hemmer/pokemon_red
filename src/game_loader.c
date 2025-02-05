@@ -26,7 +26,7 @@ static int load_window(sfRenderWindow **window)
     return 0;
 }
 
-static int load_logger(game_info_t *game_info)
+static int load_logger(game_context_t *game_context)
 {
     char *logger_path = 0;
     time_t t = time(NULL);
@@ -36,9 +36,9 @@ static int load_logger(game_info_t *game_info)
         tm.tm_mon + 1, tm.tm_mday, (tm.tm_year + 1900));
     if (logger_path == 0)
         return 84;
-    game_info->logger = init_logger(logger_path);
+    game_context->logger = init_logger(logger_path);
     free(logger_path);
-    return game_info->logger == NULL ? 84 : 0;
+    return game_context->logger == NULL ? 84 : 0;
 }
 
 static int load_clock(sfClock **clock)
@@ -50,7 +50,7 @@ static int load_clock(sfClock **clock)
 }
 
 static int load_camera(
-    game_info_t *game_info,
+    game_context_t *game_context,
     pkm_camera_t **camera)
 {
     vector2f_t default_offset = {
@@ -62,27 +62,27 @@ static int load_camera(
     };
 
     (*camera) = create_camera(
-        game_info, default_offset, default_size);
+        game_context, default_offset, default_size);
     if ((*camera) == NULL)
         return 84;
     return 0;
 }
 
-static void load_basic_handlers(game_info_t *game_info)
+static void load_basic_handlers(game_context_t *game_context)
 {
-    register_handler(game_info, (event_handler_info_t){
+    register_handler(game_context, (event_handler_info_t){
         LOWEST, WINDOW_CLOSED, SCENE_ALL, false, &window_close_handler
     });
 }
 
-int load_game(game_info_t *game_info)
+int load_game(game_context_t *game_context)
 {
-    if (load_logger(game_info) == 84 ||
-        load_window(&game_info->window) == 84 ||
-        load_clock(&game_info->clock) == 84 ||
-        load_camera(game_info, &game_info->camera) == 84)
+    if (load_logger(game_context) == 84 ||
+        load_window(&game_context->window) == 84 ||
+        load_clock(&game_context->clock) == 84 ||
+        load_camera(game_context, &game_context->camera) == 84)
         return 84;
-    game_info->scene = SCENE_GAME;
-    load_basic_handlers(game_info);
+    game_context->scene = SCENE_GAME;
+    load_basic_handlers(game_context);
     return 0;
 }

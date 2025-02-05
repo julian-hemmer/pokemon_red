@@ -47,6 +47,6 @@ pokemon_tile_t *get_tile_at(pokemon_map_t *map, vector2s_t position);
 
 pokemon_map_t *load_map(char *map_filepath);
 void destroy_map(pokemon_map_t *map);
-void render_map(game_info_t *context, pokemon_map_t *map);
+void render_map(game_context_t *context, pokemon_map_t *map);
 
 #endif /* !PKM_MAP_H */

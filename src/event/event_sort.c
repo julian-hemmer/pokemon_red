@@ -75,8 +75,8 @@ int event_priority_descending(void *o1, void *o2)
 }
 
 void sort_event(
-    game_info_t *game_info,
+    game_context_t *game_context,
     sort_function_t compare)
 {
-    merge_sort(&(game_info->handlers), compare);
+    merge_sort(&(game_context->handlers), compare);
 }

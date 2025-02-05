@@ -16,7 +16,7 @@
 /*+    EVENT RESOLVER   +*/
 /*+----------+----------+*/
 
-typedef void (*csfml_resolver_function_t)(game_info_t *game_info,
+typedef void (*csfml_resolver_function_t)(game_context_t *game_context,
     sfEvent event);
 
 typedef struct csfml_event_resolver {
@@ -27,9 +27,9 @@ typedef struct csfml_event_resolver {
 extern const csfml_event_resolver_t CSFML_EVENT_RESOLVER[];
 extern const size_t CSFML_EVENT_RESOLVER_COUNT;
 
-void csfml_event_mouse_pressed(game_info_t *game_info, sfEvent event);
-void csfml_event_mouse_released(game_info_t *game_info, sfEvent event);
-void csfml_window_closed_event(game_info_t *game_info, sfEvent event);
+void csfml_event_mouse_pressed(game_context_t *game_context, sfEvent event);
+void csfml_event_mouse_released(game_context_t *game_context, sfEvent event);
+void csfml_window_closed_event(game_context_t *game_context, sfEvent event);
 
 /*+----------+----------+*/
 /*+        EVENT        +*/
@@ -101,7 +101,7 @@ typedef struct {
 } event_data_t;
 
 typedef void (*event_handling_function_t)(
-    game_info_t *game_info, event_data_t *event_data);
+    game_context_t *game_context, event_data_t *event_data);
 
 /**
  * Used only to create and event handler.
@@ -133,33 +133,33 @@ typedef struct {
 } event_handler_creation_t;
 
 event_handler_creation_t register_handler(
-    game_info_t *game_info,
+    game_context_t *game_context,
     event_handler_info_t handler_info);
 
 void destoy_handler(
-    game_info_t *game_info,
+    game_context_t *game_context,
     event_handler_t *handler);
 
 void destoy_handlers(
-    game_info_t *game_info);
+    game_context_t *game_context);
 
 void process_event(
-    game_info_t *game_info,
+    game_context_t *game_context,
     event_data_t *data);
 
 void process_csfml_event(
-    game_info_t *game_info,
+    game_context_t *game_context,
     sfEvent event);
 
-void dump_event_handler(game_info_t *game_info);
+void dump_event_handler(game_context_t *game_context);
 
 int event_priority_ascending(void *o1, void *o2);
 int event_priority_descending(void *o1, void *o2);
 
 void sort_event(
-    game_info_t *game_info,
+    game_context_t *game_context,
     sort_function_t compare);
 
-void window_close_handler(game_info_t *game_info, event_data_t *);
+void window_close_handler(game_context_t *game_context, event_data_t *);
 
 #endif /* !PKM_EVENT_H */

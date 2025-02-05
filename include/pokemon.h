@@ -16,7 +16,7 @@
     #define WINDOW_HEIGHT 1080
     #define WINDOW_WIDTH 1920
 
-typedef struct game_info {
+typedef struct game_context {
     sfRenderWindow *window;
     sfClock *clock;
     struct pkm_camera *camera;
@@ -27,10 +27,10 @@ typedef struct game_info {
 
     logger_t *logger;
     struct event_handler *handlers;
-} game_info_t;
+} game_context_t;
 
-int load_game(game_info_t *game_info);
-int launch_game(game_info_t *game_info);
-int destoy_game(game_info_t *game_info);
+int load_game(game_context_t *game_context);
+int launch_game(game_context_t *game_context);
+int destoy_game(game_context_t *game_context);
 
 #endif /* !POKEMON_H */

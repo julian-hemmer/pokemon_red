@@ -7,7 +7,7 @@
 
 #include "pkm_event.h"
 
-void csfml_window_closed_event(game_info_t *game_info, sfEvent)
+void csfml_window_closed_event(game_context_t *game_context, sfEvent)
 {
     event_data_t data = {
         .type = WINDOW_CLOSED,
@@ -15,5 +15,5 @@ void csfml_window_closed_event(game_info_t *game_info, sfEvent)
         .event_data = NULL
     };
 
-    process_event(game_info, &data);
+    process_event(game_context, &data);
 }

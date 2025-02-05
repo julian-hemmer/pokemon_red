@@ -9,7 +9,7 @@
 #include <SFML/Graphics.h>
 
 void process_csfml_event(
-    game_info_t *game_info,
+    game_context_t *game_context,
     sfEvent event)
 {
     csfml_event_resolver_t resolver;
@@ -18,26 +18,26 @@ void process_csfml_event(
         resolver = CSFML_EVENT_RESOLVER[i];
         if (resolver.type != event.type)
             continue;
-        resolver.function(game_info, event);
+        resolver.function(game_context, event);
     }
 }
 
 void process_event(
-    game_info_t *game_info,
+    game_context_t *game_context,
     event_data_t *data)
 {
-    event_handler_t *handler = game_info->handlers;
+    event_handler_t *handler = game_context->handlers;
 
     while (handler != NULL) {
         if ((data->type != handler->target_event) ||
             (data->is_canceled && handler->ignore_canceled) ||
-            (game_info->scene != handler->target_scene
+            (game_context->scene != handler->target_scene
                 && handler->target_scene != SCENE_ALL)) {
             handler = handler->next_handler;
             continue;
         }
         handler->call_count++;
-        handler->handling_function(game_info, data);
+        handler->handling_function(game_context, data);
         handler = handler->next_handler;
     }
 }

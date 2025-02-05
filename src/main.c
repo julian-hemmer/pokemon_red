@@ -13,14 +13,14 @@
 
 int main(int, const char **)
 {
-    game_info_t game_info = { 0 };
+    game_context_t game_context = { 0 };
 
-    if (load_game(&game_info) != 0) {
+    if (load_game(&game_context) != 0) {
         fprintf(stderr, "An error occur while loading the game !\n");
-        destoy_game(&game_info);
+        destoy_game(&game_context);
         return 84;
     }
-    launch_game(&game_info);
-    destoy_game(&game_info);
+    launch_game(&game_context);
+    destoy_game(&game_context);
     return 0;
 }
