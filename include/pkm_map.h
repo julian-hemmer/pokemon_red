@@ -30,8 +30,8 @@ typedef struct pokemon_tile_context {
 
     sfTexture *sprite_texture;
     vector2s_t sprite_position;
-    
-    pokemon_tile_context *next_context;
+
+    struct pokemon_tile_context *next_context;
 } pokemon_tile_context_t;
 
 // The map is stored in 1d array.
